@@ -18,7 +18,7 @@ use Hybrid\Contracts\Bootable;
 /**
  * RootstrapTabs class
  */
-class RootstrapTabs implements Bootable {
+class Manager implements Bootable {
 
     /**
      * Store instance
