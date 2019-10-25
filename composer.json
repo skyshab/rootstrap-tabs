@@ -19,9 +19,7 @@
 		"psr-4" : {
 			"Rootstrap\\Tabs\\" : "src/"
 		},
-		"files" : [
-			"src/functions.php"
-		]
+		"files" : []
 	},
 	"require" : {}
 }

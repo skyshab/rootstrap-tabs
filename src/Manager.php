@@ -21,32 +21,12 @@ use Hybrid\Contracts\Bootable;
 class Manager implements Bootable {
 
     /**
-     * Store instance
-     */
-    private static $instance = null;
-
-    /**
      * Resources Path
      *
      * @since 1.0.0
      * @var string
      */
     private $resources;
-
-    /**
-     * Get instance.
-     *
-     * Instantiate new instance if one has not already been created.
-     *
-     * @since 1.0.0
-     * @return object
-     */
-    public static function instance(){
-        if(self::$instance == null) {
-            self::$instance = new RootstrapTabs();
-        }
-        return self::$instance;
-    }
 
     /**
      * Load resources.

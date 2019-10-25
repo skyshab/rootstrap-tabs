@@ -70,7 +70,7 @@ class Tabs_Control extends WP_Customize_Control {
              }
              else $label = ( $tab ) ? $tab : 'Tab';
 
-             printf( '<a data-section="%s" class="rootstrap-nav-link rootstrap-nav-link__tabs rootstrap-tab%s%s" href="#">%s</a>',
+             printf( '<a data-section="%s" class="rootstrap-tabs rootstrap-tab%s%s" href="#">%s</a>',
                  esc_attr( $section ),
                  esc_attr( $current ),
                  esc_attr( $root ),
