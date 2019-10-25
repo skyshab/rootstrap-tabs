@@ -53,7 +53,7 @@ class Manager implements Bootable {
      * @return void
      */
     public function customControl($manager) {
-        require_once './controls/class-tabs-control.php';
+        require_once 'controls/class-tabs-control.php';
     }
 
     /**
