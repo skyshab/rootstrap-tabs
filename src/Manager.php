@@ -14,6 +14,7 @@
 namespace Rootstrap\Tabs;
 
 use Hybrid\Contracts\Bootable;
+use function Rootstrap\vendor_path;
 
 /**
  * RootstrapTabs class
