@@ -37,7 +37,7 @@ class Manager implements Bootable {
      */
     public function boot() {
         // Store resources path
-        $this->resources = vendor_path() . '/rootstrap-tabs/dist';
+        $this->resources = vendor_path() . '/skyshab/rootstrap-tabs/dist';
         // Add custom control
         add_action( 'rootstrap/customize-register', [ $this, 'customControl' ] );
         // Register tabs
