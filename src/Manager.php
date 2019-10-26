@@ -78,7 +78,7 @@ class Manager implements Bootable {
      * @return void
      */
     public function customizeResources() {
-        wp_enqueue_script( 'rootstrap-tabs-customize-controls', $this->resources . '/js/customize-controls.min.js', ['customize-controls'], null, true );
-        wp_enqueue_style(  'rootstrap-tabs-customize-controls', $this->resources . '/css/customize-controls.min.css' );
+        wp_enqueue_script( 'rootstrap-tabs-customize-controls', $this->resources . '/js/customize-controls.js', ['customize-controls'], null, true );
+        wp_enqueue_style(  'rootstrap-tabs-customize-controls', $this->resources . '/css/customize-controls.css' );
     }
 }
