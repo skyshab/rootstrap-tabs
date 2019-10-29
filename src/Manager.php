@@ -14,6 +14,7 @@
 namespace Rootstrap\Tabs;
 
 use Hybrid\Contracts\Bootable;
+use WP_Customize_Manager;
 use function Rootstrap\vendor_path;
 
 /**
@@ -22,26 +23,19 @@ use function Rootstrap\vendor_path;
 class Manager implements Bootable {
 
     /**
-     * Resources Path
-     *
-     * @since 1.0.0
-     * @var string
-     */
-    private $resources;
-
-    /**
      * Load resources.
      *
      * @since 1.0.0
      * @return void
      */
     public function boot() {
-        // Store resources path
-        $this->resources = vendor_path() . '/skyshab/rootstrap-tabs/dist';
+
         // Add custom control
         add_action( 'rootstrap/customize-register', [ $this, 'customControl' ] );
+
         // Register tabs
         add_action( 'rootstrap/customize-register/after', [ $this, 'tabs' ] );
+
         // Load customize control resources
         add_action( 'customize_controls_enqueue_scripts', [ $this, 'customizeResources' ] );
     }
@@ -50,9 +44,10 @@ class Manager implements Bootable {
      * Load file that contains our customizer control for tabs.
      *
      * @since 1.0.0
+     * @param object - instance of WP_Customize_Manager
      * @return void
      */
-    public function customControl($manager) {
+    public function customControl( WP_Customize_Manager $manager) {
         require_once 'controls/class-tabs-control.php';
     }
 
@@ -60,11 +55,14 @@ class Manager implements Bootable {
      * Create tabs
      *
      * @since 1.0.0
+     * @param object - instance of WP_Customize_Manager
      * @return void
      */
-    public function tabs($manager) {
+    public function tabs( WP_Customize_Manager $manager) {
+
         // Filter for registering tabs
         $tabs = apply_filters( 'rootstrap/tabs', [] );
+
         // Create tabs
         foreach( $tabs as $args ) {
             $newTabs = new Tabs($manager, $args);
@@ -78,7 +76,8 @@ class Manager implements Bootable {
      * @return void
      */
     public function customizeResources() {
-        wp_enqueue_script( 'rootstrap-tabs-customize-controls', $this->resources . '/js/customize-controls.js', ['customize-controls'], null, true );
-        wp_enqueue_style(  'rootstrap-tabs-customize-controls', $this->resources . '/css/customize-controls.css' );
+        $resources = vendor_path() . '/skyshab/rootstrap-tabs/dist';
+        wp_enqueue_script( 'rootstrap-tabs-customize-controls', $resources . '/js/customize-controls.js', ['customize-controls'], null, true );
+        wp_enqueue_style(  'rootstrap-tabs-customize-controls', $resources . '/css/customize-controls.css' );
     }
 }

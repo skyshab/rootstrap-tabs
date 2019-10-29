@@ -14,6 +14,7 @@
 namespace Rootstrap\Tabs;
 
 use Tabs_Control;
+use WP_Customize_Manager;
 
 /**
  * Creates a new tabs object.
@@ -68,10 +69,10 @@ class Tabs {
      * @param  array    $args
      * @return void
      */
-    public function __construct( $wp_customize, $args = [] ) {
+    public function __construct( WP_Customize_Manager $manager, array $args = [] ) {
 
         // store the customizer object
-        $this->customize = $wp_customize;
+        $this->customize = $manager;
 
         // set the object properties
         foreach( $args as $property => $value ) {
@@ -162,11 +163,13 @@ class Tabs {
      * @return string
      */
     private function get_panel() {
+
         $section = $this->customize->get_section( key( $this->sections ) );
 
         if ( $section && $section->panel ) {
             return $section->panel;
         }
+
         return false;
     }
 
@@ -178,7 +181,9 @@ class Tabs {
      * @return string
      */
     private function section_hider() {
+
         $id = sprintf( 'rootstrap-section-hider-%s', $this->get_panel() );
+
         $this->customize->add_section( $id, [
             'priority' => 999,
             'panel' => $this->get_panel(),
