@@ -7,43 +7,34 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-/**
- * Rootstrap Customize Class
- */
-class RootstrapTabs {
+wp.customize.bind( 'ready', () => {
 
-    constructor() {
-        // define api attribute
-        this.api = wp.customize;
+    const api = wp.customize;
+    if( ! api ) return false;
 
-        // if wp.customize is not defined, return
-        if( ! this.api ) return false;
+    document.querySelectorAll( '.rootstrap-tabs' ).forEach( link => {
 
-        // initialize tab functionality
-        this.initializeTabs();
-    }
+        const section = link.dataset.section;
 
-    /**
-     * Add click handler to tabs and sequence navigation
-     */
-    initializeTabs() {
-        const api = this.api;
-        document.querySelectorAll('.rootstrap-tabs').forEach( link => {
-            const section = link.dataset.section;
-            if( api.section( section ) ) {
-                link.addEventListener("click", () => {
-                    api.section( section ).active(true);
-                    api.section( section ).focus();
-                });
-            }
-        });
-    }
-}
+        if( api.section( section ) ) {
 
+            const currentTab = link.closest( '.control-section' );
+            const nextTab = api.section( section ).container[1];
 
-/**
- * Create our Rootstrap Instance on customize ready
- */
-wp.customize.bind('ready', () => {
-    const rootstrapTabs = new RootstrapTabs();
+            link.addEventListener( 'click', () => {
+
+                currentTab.classList.add( 'skip-transition' );
+                nextTab.classList.add( 'skip-transition' );
+
+                setTimeout( () => {
+                    currentTab.classList.remove( 'skip-transition' );
+                    nextTab.classList.remove( 'skip-transition' );
+                    currentTab.style.top = '';
+                }, 300 );
+
+                api.section( section ).active( true );
+                api.section( section ).focus();
+            });
+        }
+    });
 });

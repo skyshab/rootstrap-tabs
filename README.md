@@ -1,7 +1,7 @@
 # Rootstrap Tabs
 
-Version: 1.0.0
-Released: 10/29/2019
+Version: 1.1.0
+Released: 03/28/2020
 
 ## Description
 
@@ -32,4 +32,4 @@ Read the project wiki: https://github.com/skyshab/rootstrap-tabs/wiki
 
 This project is licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
 
-2019 &copy; [Sky Shabatura](https://github.com/skyshab)
+2020 &copy; [Sky Shabatura](https://github.com/skyshab)
